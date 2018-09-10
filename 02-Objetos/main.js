@@ -8,9 +8,6 @@
     console.log("Soy un función");
 }
 
-
-
-
 // nueva forma
 let miFuncionNuevo = () => {
     // console.log("Soy una nueva funcion (arrow)"); // escupe un undefined
@@ -101,7 +98,7 @@ let funcConvertir =  (numGrados) => {
 console.log("Grados FAHRENHEIT: " + funcConvertir(numGrados));
 
 //2. - Hacer una funcion que muestre la tabla de multiplicar de un número
-console.log("2. - Hacer una funcion que muestre la tabla de multiplicar de un número");
+console.log("2. - Hacer una funcion que muestre la tabla de multiplicar de un numero");
 
 let tablaDel = 3;
 
@@ -146,7 +143,7 @@ let promediaNumeros = (arregloNumeros) => {
 console.log("El promedio del arreglo es: " + promediaNumeros(arregloNumeros));
 
 //5. - Funcion que pida N parametros y devuelva cuantos parametros se le pasaron
-console.log("Funcion que pida N parametros y devuelva cuantos parametros se le pasaron");
+console.log("5.- Funcion que pida N parametros y devuelva cuantos parametros se le pasaron");
 let cuentaParams = (...params) => {
     // este ejercicio es para demostrar los var params    
     return "El numero de parametros recibidos es de: " +  params.length;
@@ -183,6 +180,53 @@ let guardarNumerosPares = (cuantosPares) => {
 console.log(" primeros "+ cuantosPares + " numeros pares");
 console.log(guardarNumerosPares(cuantosPares));
 
+/* 7. - Hacer una funcion que calcule el tiempo
+     necesario para que un automóvil que se
+     mueve con una velocidad de 73000 m / h
+     recorra una distancia de 120 km.
+         (TIEMPO = d / v) */
+
+         let velocidad = 73000; // se mide en m / h
+         let distancia = 120; // se pide en km para convertir en m
+         
+         let calculaTiempo = (velocidad, distancia) => {
+             return (distancia * 1000) / velocidad; // tiempo en horas ??
+         }
+         
+         console.log("El tiempo necesario para recorrer: " + distancia + " KM con una velidad de: " + velocidad + " m/h, es de: " + calculaTiempo(velocidad, distancia) + " Horas.");
+
+/*      8. - Crear una funcion que reciba como
+        parametro una oración y defina si
+        es palindromo
+*/
+console.log("8.- Crear una funcion que reciba como parametro una oracion y defina si es palindromo");
+let oracion = "anita lava la tina";
+
+let calculaPalindromo= (oracion) => {
+    // quitar espacios en blanco :D
+
+    oracion = oracion.replace(/\s/g, '');
+
+    console.log(oracion);
+
+    let oracionInvertida = "";
+
+    for(let indice = oracion.length -1; indice >= 0; indice--){
+        oracionInvertida += oracion[indice];
+    }
+
+    console.log("Oracion original: " + oracion);
+    console.log("Oracion invertida: " + oracionInvertida);
+
+    if(oracionInvertida == oracion){
+        console.log("La oracion es un palindromo");
+    }else{
+        console.log("La oracion no es palidromo");
+    }
+}
+
+console.log(calculaPalindromo(oracion));
+
 //9 extra Hacer los primeros N dígitos de la serie Fibbonacci
 console.log("9 extra.- Hacer los primeros N digitos de la serie Fibbonacci");
 
@@ -205,7 +249,7 @@ let calculaSerieFibonacci = (numeroSerie) => {
     }else if(numeroSerie == 3){
         serieFibonacci[0] = 0;
         serieFibonacci[1] = 1;
-        serieFibonacci[2] = 0;
+        serieFibonacci[2] = 1;
     }else{
         serieFibonacci[0] = 0;
         serieFibonacci[1] = 1;
@@ -226,12 +270,6 @@ let calculaSerieFibonacci = (numeroSerie) => {
 console.log("La serie resultante es: ");
 console.log(calculaSerieFibonacci(numeroSerie));
 
-/* 7. - Hacer una funcion que calcule el tiempo
-     necesario para que un automóvil que se
-     mueve con una velocidad de 73000 m / h
-     recorra una distancia de 120 km.
-         (TIEMPO = d / v) */
-
 // objetos
 let miObjeto = {
     numero: 13,
@@ -245,3 +283,38 @@ let miObjeto = {
 };
 
 console.log(miObjeto);
+
+// ejercicio de objetos
+//CREAR TRES OBJETOS:
+/* 
+1) CUADRADO
+2) TRIANGULO
+3) RECTANGULO
+LOS TRES OBJETOS TENGAN LOS ATRIBUTOS BASE Y ALTURA
+TAMBIEN DEBEN TENER COMO ATRIBUTO UNA FUNCION LLAMADA "CALCULAR AREA" */
+let cuadrado = {
+    base: 3,
+    calcularArea:function(){
+        return base * base;
+    }
+};
+
+let triangulo = {
+    base: 4,
+    altura: 5,
+    calcularArea:function(){
+        return (base * altura) / 2;
+    }
+};
+
+let rectangulo = {
+    base: 5,
+    altura:7,
+    calcularArea:function(){
+        return base * altura;
+    }   
+};
+
+console.log("El area del cuadrado es: " + new cuadrado().calcularArea());
+console.log("El area del trinagulo es: " + new triangulo().calcularArea());
+console.log("El area del rectangulo es: " + new rectangulo().calcularArea());
