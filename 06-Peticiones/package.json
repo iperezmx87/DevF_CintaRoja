@@ -1,0 +1,14 @@
+{
+  "name": "pckpeticiones",
+  "version": "1.0.0",
+  "description": "mi primer ejercicio de peticiones http",
+  "main": "peticiones.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Israel Perez Saucedo",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
