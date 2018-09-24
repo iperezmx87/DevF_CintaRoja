@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Supermercado chevere: Recibos</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">   
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+            <!-- Navbar content -->
+            <span class="navbar-brand mb-0 h1">Super mercado chevere</span>
+            <button class="navbar-toggler" type="button" 
+            data-toggle="collapse" data-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav mr-auto">
+                   <li li class="nav-item">
+                        <a class="nav-link" href="articulos.html">Art&iacute;culos</a>
+                    </li>
+                </ul>
+            </div>
+           <button class="btn btn-primary" data-bind="click: NuevoRecibo" >Nuevo recibo</button>
+        </nav>
+
+        <div style='margin:10px 0;'></div>
+        <h2>Lista de recibos</h2>
+        <div id="dvListaRecibos" class="container" style="margin-top:30px;">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Id recibo</th>
+                        <th scope="col">$ Subtotal</th>
+                        <th scope="col">$ I.V.A.</th>
+                        <th scope="col">$ Total</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: Recibos">
+                    <tr style="cursor:pointer;">
+                        <td>
+                            <a href="#" onclick="VistaModelo.SeleccionarRecibo(this);" data-bind="text: _id" ></a>
+                        </td>
+                        <td data-bind="text: Subtotal"></td>
+                        <td data-bind="text: IVA"></td>
+                        <td data-bind="text: Total"></td>
+                        <td><button type="button" class="btn btn-danger" 
+                            onclick="VistaModelo.EliminarRecibo(this);">Eliminar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal fade" id="modalNuevoRecibo" tabindex="-1" 
+        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Información del recibo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- formulario -->
+                        <div class="form-group">
+                            <label for="txtIdRecibo">Id del recibo</label>
+                            <input class="form-control" type="text" placeholder="Id del recibo" 
+                                id="txtIdRecibo" data-bind="value: IdReciboSeleccionado" disabled>
+                        </div>
+
+                        <!-- lista de articulos seleccionados -->
+                        <label>Lista de artículos seleccionados</label>
+                        <div class="form-group" style="max-height: 170px;overflow-y: auto;">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id artículo</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">$ Precio</th>
+                                        <th scope="col">Existencias</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: ListaArticulosSeleccionados" >
+                                    <tr style="cursor:pointer;">
+                                        <td>
+                                            <!-- eliminar de seleccion -->
+                                            <a href="#" data-bind="text: _id" onclick="VistaModelo.EliminarArticulo(this);" ></a>
+                                        </td>
+                                        <td data-bind="text: Nombre"></td>
+                                        <td data-bind="text: Precio"></td>
+                                        <td data-bind="text: Existencias"></td>
+                                    </tr>
+                                </tbody>
+                            </table>                       
+                        </div>
+
+                        <!-- lista de todos los articulos -->
+                        <label>Lista de artículos disponibles</label>
+                        <div class="form-group" style="max-height: 170px;overflow-y: auto;">
+                            <table class="table table-hover">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Id artículo</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">$ Precio</th>
+                                        <th scope="col">Existencias</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: ListaArticulos" >
+                                    <tr style="cursor:pointer;">
+                                        <td>
+                                            <!-- agregar a seleccion -->
+                                            <a href="#" data-bind="text: _id" onclick="VistaModelo.AgregarArticulo(this);" ></a>
+                                        </td>
+                                        <td data-bind="text: Nombre"></td>
+                                        <td data-bind="text: Precio"></td>
+                                        <td data-bind="text: Existencias"></td>
+                                    </tr>
+                                </tbody>
+                            </table>                             
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" data-bind="click: Guardar">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" 
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="js/recibos.js"></script>
+    </body>
+</html>

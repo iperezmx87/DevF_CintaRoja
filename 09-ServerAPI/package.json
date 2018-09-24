@@ -1,0 +1,14 @@
+{
+  "name": "09-serverapi",
+  "version": "1.0.0",
+  "description": "leccion 09, crear un api en servidor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Israel Perez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
